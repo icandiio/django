@@ -25,3 +25,10 @@ AuthenticationMiddleware
 2.通过AUTHENTICATION_BACKENDS基于用户ID，获取用户数据 => 效率问题,每次都需要查询数据库
 ```
 
+### auth 流程关键点
+```
+1.user=auth.authenticate(username=username1,password=pwd)   # 认证用户名和密码
+2.auth.login(request,user)将通过验证的user用户ID保存在session中，供auth中间件使用 
+3.django.contrib.auth.middleware.AuthenticationMiddleware中间件，将user封装到request.user的属性中
+```
+
