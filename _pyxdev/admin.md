@@ -22,7 +22,6 @@ AuthenticationForm <- auth.forms.AuthenticationForm
 ```
 AuthenticationMiddleware
 1.通过session获取到用户ID
-2.通过AUTHENTICATION_BACKENDS基于用户ID，获取用户数据
-
+2.通过AUTHENTICATION_BACKENDS基于用户ID，获取用户数据 => 效率问题,每次都需要查询数据库
 ```
 
