@@ -85,9 +85,9 @@ class LoginView(SuccessURLAllowedHostsMixin, FormView):
         kwargs['request'] = self.request
         return kwargs
 
-    def form_valid(self, form):
+    def form_valid(self, form):  # form <= django.contrib.auth.forms.AuthenticationForm
         """Security check complete. Log the user in."""
-        auth_login(self.request, form.get_user())
+        auth_login(self.request, form.get_user())  # >>>>>>>>>>>>>>>>>> 用户登录
         return HttpResponseRedirect(self.get_success_url())
 
     def get_context_data(self, **kwargs):
@@ -133,7 +133,7 @@ class LogoutView(SuccessURLAllowedHostsMixin, TemplateView):
             next_page = self.next_page
 
         if (self.redirect_field_name in self.request.POST or
-                self.redirect_field_name in self.request.GET):
+            self.redirect_field_name in self.request.GET):
             next_page = self.request.POST.get(
                 self.redirect_field_name,
                 self.request.GET.get(self.redirect_field_name)

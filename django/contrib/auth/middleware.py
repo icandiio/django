@@ -21,7 +21,7 @@ class AuthenticationMiddleware(MiddlewareMixin):
             "'django.contrib.sessions.middleware.SessionMiddleware' before "
             "'django.contrib.auth.middleware.AuthenticationMiddleware'."
         ) % ("_CLASSES" if settings.MIDDLEWARE is None else "")
-        request.user = SimpleLazyObject(lambda: get_user(request))
+        request.user = SimpleLazyObject(lambda: get_user(request))   # 基于session缓存的用户ID去查询数据库
 
 
 class RemoteUserMiddleware(MiddlewareMixin):
